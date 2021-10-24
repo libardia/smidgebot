@@ -35,11 +35,12 @@ def init(base_path):
     with open(_CONFIG_PATH, 'w') as cfile:
         configs.write(cfile)
 
-def token():
+# Convenience getters
+def getToken():
     return configs.get(SECTION_BOT, VALUE_TOKEN)
 
-def dataPath():
+def getDataPath():
     return configs.get(SECTION_BOT, VALUE_DATAPATH)
 
-def prefix():
+def getPrefix():
     return configs.get(SECTION_BOT, VALUE_PREFIX)
