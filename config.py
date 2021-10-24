@@ -12,7 +12,7 @@ VALUE_LOGPATH = 'LogPath'
 VALUE_PREFIX = 'Prefix'
 SECTION_SETTINGS = 'Settings'
 VALUE_LOGCHANNEL_ENABLED = 'LogChannelEnabled'
-VALUE_LOGCHANNEL = 'LogChannelId'
+VALUE_LOGCHANNEL_ID = 'LogChannelId'
 VALUE_LOGCHANNEL_RETAIN_SECONDS = 'LogChannelRetainSeconds'
 
 # The configs
@@ -37,15 +37,14 @@ def init(base_path):
         bot[VALUE_LOGPATH] = os.path.join(base_path, 'smidgebot.log')
     if VALUE_PREFIX not in bot:
         bot[VALUE_PREFIX] = '!'
-    
 
     if SECTION_SETTINGS not in configs:
         configs[SECTION_SETTINGS] = {}
     settings = configs[SECTION_SETTINGS]
     if VALUE_LOGCHANNEL_ENABLED not in settings:
         settings[VALUE_LOGCHANNEL_ENABLED] = 'false'
-    if VALUE_LOGCHANNEL not in settings:
-        settings[VALUE_LOGCHANNEL] = ''
+    if VALUE_LOGCHANNEL_ID not in settings:
+        settings[VALUE_LOGCHANNEL_ID] = ''
     if VALUE_LOGCHANNEL_RETAIN_SECONDS not in settings:
         # Default is 1 week
         settings[VALUE_LOGCHANNEL_RETAIN_SECONDS] = str(7 * 24 * 60 * 60)
@@ -70,7 +69,7 @@ def getLogChannelEnabled():
     return configs.getboolean(SECTION_SETTINGS, VALUE_LOGCHANNEL_ENABLED)
 
 def getLogChannelId():
-    return configs.getint(SECTION_SETTINGS, VALUE_LOGCHANNEL)
+    return configs.getint(SECTION_SETTINGS, VALUE_LOGCHANNEL_ID)
 
 def getLogChannelRetainSeconds():
     return configs.getint(SECTION_SETTINGS, VALUE_LOGCHANNEL_RETAIN_SECONDS)
