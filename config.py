@@ -32,7 +32,7 @@ def init(base_path):
     if VALUE_TOKEN not in bot:
         bot[VALUE_TOKEN] = TOKEN_INSTRUCTIONS
     if VALUE_DATAPATH not in bot:
-        bot[VALUE_DATAPATH] = os.path.join(base_path, 'data.p')
+        bot[VALUE_DATAPATH] = os.path.join(base_path, 'smidgebot.data')
     if VALUE_LOGPATH not in bot:
         bot[VALUE_LOGPATH] = os.path.join(base_path, 'smidgebot.log')
     if VALUE_PREFIX not in bot:

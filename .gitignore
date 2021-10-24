@@ -2,4 +2,4 @@ __pycache__
 .vscode
 smidgebot.ini
 smidgebot.log
-data.p
+smidgebot.data
