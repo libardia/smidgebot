@@ -1,15 +1,19 @@
 import os
 from configparser import ConfigParser
 
+# Some constants to be used elsewhere
 _CONFIG_PATH = os.path.join(os.getcwd(), 'smidgebot.ini')
-configs: ConfigParser = None
-
 TOKEN_INSTRUCTIONS = '<copy your token here>'
 
 SECTION_BOT = 'Bot'
 VALUE_TOKEN = 'Token'
 VALUE_DATAPATH = 'DataPath'
+VALUE_PREFIX = 'Prefix'
 
+# The configs
+configs: ConfigParser = None
+
+# This should be called in smidgebot.py before the bot starts
 def init(base_path):
     global configs 
     configs = ConfigParser()
@@ -25,6 +29,8 @@ def init(base_path):
         bot[VALUE_TOKEN] = TOKEN_INSTRUCTIONS
     if VALUE_DATAPATH not in bot:
         bot[VALUE_DATAPATH] = os.path.join(base_path, 'data.p')
+    if VALUE_PREFIX not in bot:
+        bot[VALUE_PREFIX] = '!'
     
     with open(_CONFIG_PATH, 'w') as cfile:
         configs.write(cfile)
@@ -34,3 +40,6 @@ def token():
 
 def dataPath():
     return configs.get(SECTION_BOT, VALUE_DATAPATH)
+
+def prefix():
+    return configs.get(SECTION_BOT, VALUE_PREFIX)
